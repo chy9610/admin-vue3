@@ -1,21 +1,20 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import Layout from '@/layout/index.vue';
 
-// 同步组装
-const constantFiles = require.context('./constantModules', true, /\.ts$/)
+// 常态页面
+const constantFiles = import.meta.globEager('./constantModules/*.ts');
 let constantModules: Array<RouteRecordRaw> = []
-constantFiles.keys().forEach((key: string) => {
-    if (key === './index.ts') return
-    constantModules = constantModules.concat(constantFiles(key).default)
-})
+for (const path in constantFiles) {
+    constantModules = constantModules.concat(constantFiles[path].default);
+}
 
-// 异步组装
-const asyncFiles = require.context('./permissionModules', true, /\.ts$/)
-let permissionModules: Array<RouteRecordRaw> = [];
-asyncFiles.keys().forEach((key: string) => {
-    if (key === './index.ts') return
-    permissionModules = permissionModules.concat(constantFiles(key).default)
-})
+// 权限页面
+const permissionFiles = import.meta.globEager('./permissionModules/*.ts');
+let permissionModules: Array<RouteRecordRaw> = []
+for (const path in permissionFiles) {
+    permissionModules = constantModules.concat(permissionFiles[path].default);
+}
+
 
 export const constantRoutes: Array<RouteRecordRaw> = [
     {
@@ -45,15 +44,21 @@ export const constantRoutes: Array<RouteRecordRaw> = [
         }]
     },
     ...constantModules
-]
+];
 
-// 异步组装路由
-export const asyncRoutes: Array<RouteRecordRaw> = [...permissionModules ]
+// 访问权限路由
+export const asyncRoutes: Array<RouteRecordRaw> = [...permissionModules]
 
-// 路由对象
+// 创建路由
 const router = createRouter({
     history: createWebHashHistory(),
     routes: constantRoutes
 })
+
+// 重置路由
+export function resetRouter() {
+    const newRouter = router;
+    (router as any).matcher = (newRouter as any).matcher
+}
 
 export default router;

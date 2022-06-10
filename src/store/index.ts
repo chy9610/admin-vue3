@@ -1,23 +1,41 @@
+import { Router, RouteRecordRaw } from 'vue-router';
 import { ref } from 'vue';
 import { defineStore } from 'pinia'
 
+// 函数形式
 // export const useStore = defineStore('main', () => {
 //     const locale = zhCn;
 //     let userName = ref('')
-
 //     function getUserName() {
 //         return `欢迎欢临！！！${userName.value}`
 //     }
-
 //     return { locale, userName, getUserName }
 // }); 
-
-
-
-const useStore = defineStore('storeId', {
+let routes: Array<RouteRecordRaw> = []
+const useStore = defineStore('main', {
     state: () => {
         return {
-            // locale: zhCn,s
+            app: {
+                sidebar: {
+                    opened: true
+                }
+            },
+            settings: {
+                theme: '#57CAEB',
+                showSidebarLogo: false,
+                sidebarTextTheme: '#0f0',
+                variables: {
+                    menuBg: '#ff0000',
+                    menuText: '#000000',
+                    menuActiveText: '#ffffff'
+                }
+            },
+            permission: {
+                routes
+            },
+            tagViews: {
+                cachedViews: ''
+            },
             userName: '',
             counter: 0
         }
@@ -32,7 +50,7 @@ const useStore = defineStore('storeId', {
     }
 });
 
-// $onAction, 针对当前项目中设置过程的监控，随后做出相应判断。
+// $onAction, 针对当前状态管理过程中异步动作的监控，随后做出相应判断。
 // const unsubscribe = useStore().$onAction(({ name, store, args, after, onError }) => {
 //     const startTime = Date.now();
 //     console.log(`Start ${name} with params [${args.join()}]`);
