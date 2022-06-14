@@ -15,4 +15,12 @@ const locale = zhCn;
   padding: 0;
   margin: 0;
 }
+
+a,
+a:focus,
+a:hover {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
 </style>

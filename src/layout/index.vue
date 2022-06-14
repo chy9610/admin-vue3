@@ -1,7 +1,6 @@
 <template>
   <el-container class="app-wrapper">
-    <el-aside class="aside-wrap"
-      >左侧菜单
+    <el-aside class="aside-wrap">
       <SideBar />
     </el-aside>
     <el-container>
