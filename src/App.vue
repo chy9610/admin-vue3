@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ElConfigProvider } from "element-plus";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
-const locale = zhCn;
+import { useAppStore } from '@/store/modules/app/index';
+const appStore = useAppStore()
+const locale = appStore.$state.localeLanguage;
 </script>
 
 <template>

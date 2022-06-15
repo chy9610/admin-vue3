@@ -1,6 +1,7 @@
 // 国际化
 import { createI18n } from 'vue-i18n'
 
+
 // 获取语言
 import { getLanguage } from '@/utils/cookies'
 
@@ -11,9 +12,13 @@ import elementZhLocale from 'element-plus/lib/locale/lang/zh-cn'
 import enLocale from './en'
 import zhLocale from './zh-cn'
 
-// 
-const messages = {
-    en: {
+interface Message {
+    [key: string]: object
+}
+
+// 语言集
+const messages: Message = {
+    'en': {
         ...enLocale,
         ...elementEnLocale
     },
@@ -23,7 +28,8 @@ const messages = {
     }
 }
 
-export const getLocale = () => {
+// 缓存中的cookie
+export const getLocale = (): string => {
 
     const cookieLanguage = getLanguage()
 
@@ -43,9 +49,17 @@ export const getLocale = () => {
     return 'zh-cn'
 }
 
+// 语言对象
+export const localeLanguage = (): object => {
+    const key = getLocale();
+    return messages[key]
+}
+
 const i18n = createI18n({
     locale: getLocale(),
-    messages: messages
+    resource: messages,
+    legacy: false,
+    globalInjection: true
 })
 
 export default i18n;

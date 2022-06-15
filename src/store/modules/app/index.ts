@@ -1,18 +1,12 @@
 import { RouteRecordRaw } from 'vue-router';
 import { defineStore } from 'pinia'
 import { state } from './state'
+import { actions } from './actions'
 
 let routes: Array<RouteRecordRaw> = []
-const useStore = defineStore('app', {
+const useAppStore = defineStore('app', {
     state: () => state,
-    getters: {
-        getUserName: (state) => `欢迎欢临！！！${state.userName}`
-    },
-    actions: {
-        setCount() {
-            this.counter++
-        }
-    }
+    actions
 });
 
-export { useStore };
+export { useAppStore };

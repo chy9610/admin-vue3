@@ -15,7 +15,7 @@ export interface Actions {
     [AppActionTypes.ACTION_SET_SIZE](options: any): void
 }
 
-export const actions: ActionTree<AppState, RootState> & Actions = {
+export const actions: Actions = {
     [AppActionTypes.ACTION_TOGGLE_SIDEBAR](options: any) { },
     [AppActionTypes.ACTION_CLOSE_SIDEBAR](options: any) { },
     [AppActionTypes.ACTION_TOGGLE_DEVICE](options: any) { },

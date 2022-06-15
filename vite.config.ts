@@ -1,6 +1,7 @@
-const path = require('path'); 
+const path = require('path');
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { useI18n } from 'vue-i18n';
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import ElementPlus from 'unplugin-element-plus/vite'
@@ -23,6 +24,9 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    useI18n({
+      include: path.resolve(__dirname, './src/locales/**')
+    }),
     ElementPlus({ useSource: true }), // 按需引入组件时，自定义主题
     AutoImport({ resolvers: [ElementPlusResolver()] }),
     Components({ resolvers: [ElementPlusResolver()] })
