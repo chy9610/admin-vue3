@@ -2,7 +2,8 @@
   "compilerOptions": {
     "composite": true,
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true /* 用来指定允许从没有默认导出的模块中默认导入 */
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "getEnv.ts"]
 }

@@ -1,21 +1,36 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "useDefineForClassFields": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "strict": true,
-    "jsx": "preserve",
-    "sourceMap": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "skipLibCheck": true,
-    "baseUrl": ".",
+    /* Basic Options */
+    "target": "esnext" /* target用于指定编译之后的版本目标: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */,
+    "module": "esnext" /* 用来指定要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */,
+    "lib": ["esnext", "dom"] /* lib用于指定要包含在编译中的库文件 */,
+    "jsx": "preserve" /* 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'. */,
+    "removeComments": false /* removeComments的值为true或false，用于指定是否将编译后的文件中的注释删掉，设为true的话即删掉注释，默认为false */,
+    "isolatedModules": true /* isolatedModules的值为true或false，指定是否将每个文件作为单独的模块，默认为true，它不可以和declaration同时设定 */,
+
+    /* Module Resolution Options */
+    "baseUrl": "." /* baseUrl用于设置解析非相对模块名称的基本目录，相对模块不会受baseUrl的影响 */,
+    "moduleResolution": "node" /* 用于选择模块解析策略，有'node'和'classic'两种类型' */,
+    "esModuleInterop": true /* 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性 */,
+    "allowSyntheticDefaultImports": true /* 用来指定允许从没有默认导出的模块中默认导入 */,
+    "preserveSymlinks": true /* 不把符号链接解析为其真实路径，具体可以了解下webpack和nodejs的symlink相关知识 */,
     "paths": {
       "@/*": ["src/*"]
-    }
+    } /* 用于设置模块名称到基于baseUrl的路径映射 */,
+
+    /* Strict Type-Checking Options */
+    "strict": true /* strict的值为true或false，用于指定是否启动所有类型检查，如果设为true则会同时开启下面这几个严格类型检查，默认为false */,
+
+    /* Additional Checks */
+    "noUnusedLocals": true /* 用于检查是否有定义了但是没有使用的变量，对于这一点的检测，使用eslint可以在你书写代码的时候做提示，你可以配合使用。它的默认值为false */,
+    "noUnusedParameters": true /* 用于检查是否有在函数体中没有使用的参数，这个也可以配合eslint来做检查，默认为false */,
+
+    /* Other */
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "types": ["pinia-plugin-persist"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]

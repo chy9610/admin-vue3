@@ -1,0 +1,20 @@
+# 特殊文件
+.history
+.vscode
+
+# 配置文件
+.eslintrc.js
+
+# 字体文件
+*.md
+*.woff
+*.ttf
+
+# 公共文件夹
+bin
+dist
+node_modules
+public
+docs
+src/mock
+
