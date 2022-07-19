@@ -2,11 +2,11 @@
   <div class="side_bar_logo" :class="collapse ? 'collapse' : 'notitle'">
     <transition name="sidebarLogoFade">
       <router-link class="sidebar-logo-link" v-if="!collapse" to="/">
-        <img src="duck.ico" class="sidebar-logo" />
+        <img src="favicon.ico" class="sidebar-logo" />
       </router-link>
       <router-link class="sidebar-logo-link collapse" v-else to="/">
-        <img src="duck.ico" class="sidebar-logo" />
-        <h1>Yellow<span style="color: red">Duck</span></h1>
+        <img src="favicon.ico" class="sidebar-logo" />
+        <h1 style="color: red">Duck Admin</h1>
       </router-link>
     </transition>
   </div>
