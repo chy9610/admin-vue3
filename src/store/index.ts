@@ -12,7 +12,7 @@ export const GlobalStore = defineStore({
 			},
 			// element组件大小
 			assemblySize: 'default',
-			language: '',
+			language: 'zh',
 			themeConfig: {
 				// 默认 primary 主题颜色
 				primary: '#409EFF',
