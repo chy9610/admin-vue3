@@ -34,7 +34,7 @@ import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from "vue-router";
 import { CircleClose, UserFilled } from "@element-plus/icons-vue";
 import { ElForm, ElMessage } from "element-plus";
-import { Login } from "@/api/interface";
+import { Login, ResultData } from "@/api/interface";
 import { loginApi } from "@/api/modules/login";
 import { GlobalStore } from "@/store";
 import { MenuStore } from "@/store/modules/menu";
@@ -74,11 +74,9 @@ onMounted(() => {
 })
 
 const login = (formEl: FormInstance | undefined) => {
-    console.log('键盘事件触发')
     if (!formEl) return;
 
     formEl.validate(async (valid) => {
-        console.log(valid)
         if (valid) {
             loading.value = true;
             try {
@@ -86,7 +84,7 @@ const login = (formEl: FormInstance | undefined) => {
                     username: loginForm.username,
                     password: md5(loginForm.password)
                 }
-                const res = await loginApi(requestLoginForm);
+                const res: ResultData = await loginApi(requestLoginForm);
                 // 本地缓存 Token
                 globalStore.setToken(res?.data.access_token)
                 // 登录成功之后，清除原有的 menuList 和 tabs 数据
