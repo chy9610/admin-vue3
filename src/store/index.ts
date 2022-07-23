@@ -1,44 +1,49 @@
-import { RouteRecordRaw } from 'vue-router';
-import { defineStore } from 'pinia'
-import { logger } from './logger';
+import { defineStore } from 'pinia';
+import { GlobalState, UserInfoProp, ThemeConfigProp } from './interface';
+import piniaPersistConfig from '@/config/piniaPersist';
 
-let routes: Array<RouteRecordRaw> = []
-const useStore = defineStore('main', {
-    state: () => {
-        return {
-            app: {
-                sidebar: {
-                    opened: true
-                }
-            },
-            settings: {
-                theme: '#57CAEB',
-                showSidebarLogo: true,
-                sidebarTextTheme: '#0f0',
-                variables: {
-                    menuBg: '#ff0000',
-                    menuText: '#000000',
-                    menuActiveText: '#ffffff'
-                }
-            },
-            permission: {
-                routes
-            },
-            tagViews: {
-                cachedViews: ''
-            },
-            userName: '',
-            counter: 0
-        }
-    },
-    getters: {
-        getUserName: (state) => `欢迎欢临！！！${state.userName}`
-    },
-    actions: {
-        setCount() {
-            this.counter++
-        }
-    }
+export const GlobalStore = defineStore({
+	id: 'GlobalState',
+	state: (): GlobalState => {
+		return {
+			token: '',
+			userInfo: {
+				name: '',
+			},
+			// element组件大小
+			assemblySize: 'default',
+			language: '',
+			themeConfig: {
+				// 默认 primary 主题颜色
+				primary: '#409EFF',
+				// 深色模式
+				isDark: false,
+				// 灰色模式
+				isGrey: false,
+				// 色弱模式
+				isWeak: false,
+			},
+		};
+	},
+	actions: {
+		setToken(token: string) {
+			this.token = token;
+		},
+		setUserInfo(userInfo: UserInfoProp) {
+			Object.assign(this.userInfo, userInfo);
+		},
+		setAssemblySize(size: string) {
+			this.assemblySize = size;
+		},
+		setLanguage(language: string) {
+			this.language = language;
+		},
+		setThemeConfig(themeConfig: ThemeConfigProp) {
+			this.themeConfig = themeConfig;
+		},
+	},
+	persist: {
+		enabled: true,
+		strategies: [piniaPersistConfig('GlobalState')],
+	},
 });
-
-export { useStore };
