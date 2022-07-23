@@ -5,7 +5,7 @@
         </el-tooltip>
         <el-dialog v-model="isShowSearch" width="300px" destroy-on-close :modal="false" fullscreen :show-close="false">
             <el-autocomplete ref="menuInputRef" placeholder="菜单搜索：支持菜单名称、路径" v-model="searchMenu"
-                :fetch-suggestions="searchMenuList" @select="handleClickMenu" @blur="closeDialog">
+                :fetch-suggestions="searchMenuList" clearable @select="handleClickMenu" @blur="closeDialog">
                 <template #prefix>
                     <el-icon>
                         <Search />
@@ -41,10 +41,13 @@ const openDialog = () => {
         setTimeout(() => {
             menuInputRef.value.focus();
         });
+        setTimeout(() => {
+            menuInputRef.value.blur();
+        }, 3000)
     });
 }
 const closeDialog = () => {
-    console.log('失去焦点')
+    alert('失去焦点')
     isShowSearch.value = false;
 }
 // 筛选菜单

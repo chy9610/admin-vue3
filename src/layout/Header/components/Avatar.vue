@@ -1,13 +1,14 @@
 <template>
     <el-dropdown trigger="click">
-        <div class="avatar">
-            <img src="@/assets/images/avatar.gif" alt="avatar">
-        </div>
+        <el-tooltip effect="dark" content="Ducker" placement="bottom">
+            <img class="avatar" src="@/assets/images/duck.gif" alt="avatar">
+        </el-tooltip>
         <template #dropdown>
             <el-dropdown-menu>
-                <el-dropdown-item @click="openDialog('infoRef')">用户信息</el-dropdown-item>
-                <el-dropdown-item @click="openDialog('passwordRef')">用户密码</el-dropdown-item>
-                <el-dropdown-item @click="loginOut" dived>退出登录</el-dropdown-item>
+                <el-dropdown-item @click="openDialog('infoRef')">{{ $t("header.personalData") }}</el-dropdown-item>
+                <el-dropdown-item @click="openDialog('passwordRef')">{{ $t("header.changePassword") }}
+                </el-dropdown-item>
+                <el-dropdown-item @click="loginOut" dived>{{ $t("header.logout") }}</el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>

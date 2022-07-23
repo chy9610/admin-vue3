@@ -1,10 +1,10 @@
 <template>
-    <el-dialog v-model="dialogVisible" title="用户密码" width="500px" draggable>
+    <el-dialog v-model="dialogVisible" :title="$t('header.changePassword')" width=" 500px" draggable>
         <span>This is userInfo</span>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="dialogVisible = false">取消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确认</el-button>
+                <el-button @click="dialogVisible = false">{{ $t("dialog.cancel") }}</el-button>
+                <el-button type="primary" @click="dialogVisible = false">{{ $t("dialog.confirm") }}</el-button>
             </span>
         </template>
     </el-dialog>

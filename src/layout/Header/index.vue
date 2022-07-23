@@ -5,24 +5,23 @@
             <Breadcrumb></Breadcrumb>
         </div>
         <div class="header-ri flx-center">
-            <!-- <AssemblySize></AssemblySize>
-            <Language></Language> -->
+            <AssemblySize></AssemblySize>
+            <Language></Language>
             <SearchMenu></SearchMenu>
             <Theme></Theme>
             <Fullscreen></Fullscreen>
-            <div class="userInfo-main flx-center">
-                <span class="username">Geeker</span>
-                <Avatar></Avatar>
-            </div>
+            <Avatar></Avatar>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+import AssemblySize from "./components/AssemblySize.vue";
 import CollapseIcon from "./components/CollapseIcon.vue";
 import Breadcrumb from "./components/Breadcrumb.vue";
 import Fullscreen from "./components/Fullscreen.vue";
 import SearchMenu from "./components/SearchMenu.vue";
+import Language from './components/Language.vue';
 import Avatar from "./components/Avatar.vue";
 import Theme from "./components/Theme.vue";
 </script>
