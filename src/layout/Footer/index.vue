@@ -1,16 +1,12 @@
 <template>
-    <div class="footer-main">
-
+    <div class="footer-main flx-center">
+        <a href="http://www.spicyboy.cn/" target="_blank"> This Project is Modeled After The
+            Geeker-Admin-Spicyboy.<br />
+            2022
+            © Geeker-Admin By Geeker Technology.</a>
     </div>
 </template>
 
-<script lang="ts" setup>
-</script>
-
 <style lang="scss" scoped>
-.footer-main {
-    width: 100%;
-    height: 200px;
-    background-color: rgb(28, 217, 241);
-}
+@import './index.scss';
 </style>

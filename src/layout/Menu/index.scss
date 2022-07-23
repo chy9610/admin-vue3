@@ -1,0 +1,32 @@
+.menu-wrap {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	height: 100%;
+	background-color: #191a20;
+	transition: all 0.3s ease;
+	:deep(.el-scrollbar) {
+		height: calc(100% - 55px);
+		.el-menu {
+			border-right: none;
+			.el-menu-item {
+				&.is-active {
+					background-color: #060708 !important;
+				}
+				&.is-active::before {
+					content: '';
+					position: absolute;
+					top: 0;
+					bottom: 0;
+					left: 0;
+					width: 4px;
+					background: $primary-color;
+				}
+			}
+		}
+	}
+	.scrollbar-wrapper {
+		flex: 1;
+	}
+}

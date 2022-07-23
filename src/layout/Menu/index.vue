@@ -1,9 +1,11 @@
 <template>
-  <div class="menu-wrap" v-loading="loading">
+  <div class="menu-wrap" :style="{ width: isCollapse ? '65px' : '220px' }" v-loading="loading"
+    element-loading-text="Loading..." :element-loading-spinner="loadingSvg"
+    element-loading-background="rgba(122, 122, 122, 0.01)" element-loading-svg-view-box="-10, -10, 50, 50">
     <menu-logo :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu :default-active="activeMenu" :router="true" :collapse="isCollapse" :collapse-transition="false"
-        background-color="#191a20" text-color="#bdbdc0" active-text-color="#fff">
+        :unique-opened="true" background-color="#191a20" text-color="#bdbdc0" active-text-color="#fff">
         <menu-item :menuList="menuList" />
       </el-menu>
     </el-scrollbar>
@@ -17,8 +19,9 @@ import { MenuStore } from "@/store/modules/menu";
 import { AuthStore } from "@/store/modules/auth";
 import { getMenuList } from "@/api/modules/login";
 import { handlerRouter } from "@/utils/util";
-import MenuLogo from "./MenuLogo.vue";
-import MenuItem from "./MenuItem.vue";
+import { loadingSvg } from "@/utils/svg";
+import MenuLogo from "./components/MenuLogo.vue";
+import MenuItem from "./components/MenuItem.vue";
 
 const route = useRoute();
 const authStore = AuthStore();
@@ -62,10 +65,5 @@ listenWindow();
 </script>
 
 <style lang="scss" scoped>
-.menu-wrap {
-  width: 100%;
-  height: 100%;
-  // background-color: #409EFF;
-  background-color: #ffffff;
-}
+@import './index.scss';
 </style>

@@ -1,19 +1,16 @@
 <template>
   <div class="side_bar_logo" :class="collapse ? 'collapse' : 'notitle'">
     <transition name="sidebarLogoFade">
-      <router-link class="sidebar-logo-link" v-if="!collapse" to="/">
+      <router-link class="sidebar-logo-link" to="/">
         <img src="favicon.ico" class="sidebar-logo" />
-      </router-link>
-      <router-link class="sidebar-logo-link collapse" v-else to="/">
-        <img src="favicon.ico" class="sidebar-logo" />
-        <h1 style="color: red">Duck Admin</h1>
+        <h1 class="title" v-show="!collapse">Duck Admin</h1>
       </router-link>
     </transition>
   </div>
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   collapse: {
     type: Boolean,
     default: false
@@ -23,7 +20,7 @@ const props = defineProps({
 
 <style lang="scss" scoped>
 .sidebarLogoFade-enter-active {
-  transition: opacity 1.5s;
+  transition: opacity 1s;
 }
 
 .sidebarLogoFade-enter,
@@ -34,17 +31,18 @@ const props = defineProps({
 .side_bar_logo {
   position: relative;
   width: 100%;
-  height: 50px;
+  height: 55px;
   line-height: 50px;
-  background: #fff;
   text-align: center;
-  overflow: hidden;
-  margin-bottom: 30px;
-  margin-top: 20px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #282a35;
+  box-shadow: 2px 0 6px #00152959;
+  background-color: #191a20;
 
   .sidebar-logo {
     display: inline-block;
-    height: 100%;
+    object-fit: contain;
+    height: 60%;
   }
 
   .sidebar-logo-link {
@@ -53,6 +51,13 @@ const props = defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .title {
+      color: red;
+      font-size: 22px;
+      margin-left: 8px;
+      font-weight: bold;
+    }
   }
 
   &.collapse {

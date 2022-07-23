@@ -4,14 +4,14 @@
     <el-aside>
       <Menu></Menu>
     </el-aside>
-    <el-container>
+    <el-container class="container">
       <!-- 头部 -->
       <el-header>
         <Header></Header>
         <Tabs></Tabs>
       </el-header>
       <!-- 内容区域 -->
-      <el-main>
+      <el-main class="main">
         <section class="main-box">
           <router-view v-slot="{ Component, route }">
             <transition appear name="fade-transform" mode="out-in">
@@ -51,20 +51,5 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-.aside-wrap {
-  width: 200px;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-}
-
-.header-wrap {
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background-color: #fff;
-  box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
-}
+@import'./index.scss';
 </style>
