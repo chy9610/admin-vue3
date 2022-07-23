@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-
+import I18n from '@/language/index';
 // 状态管理器
 import { createPinia } from 'pinia';
 import piniaPersist from 'pinia-plugin-persist';
@@ -38,4 +38,4 @@ const app = createApp(App);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 	app.component(key, component);
 }
-app.use(pinia).use(router).mount('#app');
+app.use(pinia).use(router).use(I18n).mount('#app');
