@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     500: typeof import('./src/components/ErrorMessage/500.vue')['default']
     Breadcrumb: typeof import('./src/components/Breadcrumb.vue')['default']
     CollapseIcon: typeof import('./src/components/CollapseIcon.vue')['default']
+    ElAlert: typeof import('element-plus/es')['ElAlert']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElAutocomplete: typeof import('element-plus/es')['ElAutocomplete']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
