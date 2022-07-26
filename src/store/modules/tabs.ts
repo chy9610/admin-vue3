@@ -49,7 +49,7 @@ export const TabsStore = defineStore({
 			}
 			this.tabsMenuValue = tabsMenuValue;
 			// 过滤需关闭的 tab
-			this.tabsMenuList.filter(item => item.path !== tabPath);
+			this.tabsMenuList = this.tabsMenuList.filter(item => item.path !== tabPath);
 		},
 		// 改变当前tab项
 		async changeTabs(tabItem: TabPaneProps) {

@@ -1,6 +1,7 @@
-import { defineStore } from 'pinia';
-import { GlobalState, UserInfoProp, ThemeConfigProp } from './interface';
+import { createPinia, defineStore } from 'pinia';
+import piniaPersist from 'pinia-plugin-persist';
 import piniaPersistConfig from '@/config/piniaPersist';
+import { GlobalState, UserInfoProp, ThemeConfigProp } from './interface';
 
 export const GlobalStore = defineStore({
 	id: 'GlobalState',
@@ -47,3 +48,9 @@ export const GlobalStore = defineStore({
 		strategies: [piniaPersistConfig('GlobalState')],
 	},
 });
+
+// pinia 持久化
+const pinia = createPinia();
+pinia.use(piniaPersist);
+
+export default pinia;
