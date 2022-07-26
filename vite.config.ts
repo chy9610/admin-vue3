@@ -7,10 +7,11 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import viteCompression from 'vite-plugin-compression';
 import VueSetupExtend from 'vite-plugin-vue-setup-extend';
 import vueJSX from '@vitejs/plugin-vue-jsx';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import ElementPlus from 'unplugin-element-plus/vite';
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import importToCDN from 'vite-plugin-cdn-import';
+// import AutoImport from 'unplugin-auto-import/vite';
+// import Components from 'unplugin-vue-components/vite';
+// import ElementPlus from 'unplugin-element-plus/vite';
+// import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 	const env = loadEnv(mode, process.cwd());
@@ -32,9 +33,27 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			// * name 可以写在 script 标签上
 			VueSetupExtend(),
 			// 按需引入组件时，自定义主题
-			ElementPlus({ useSource: true }),
-			AutoImport({ resolvers: [ElementPlusResolver()] }),
-			Components({ resolvers: [ElementPlusResolver()] }),
+			// ElementPlus({ useSource: true }),
+			// AutoImport({ resolvers: [ElementPlusResolver()] }),
+			// Components({ resolvers: [ElementPlusResolver()] }),
+			// * cdn 引入（vue、element-plus）
+			importToCDN({
+				modules: [
+					// vue按需引入会导致依赖vue的插件出现问题(列如:pinia/vuex)
+					// {
+					// 	name: "vue",
+					// 	var: "Vue",
+					// 	path: "https://unpkg.com/vue@next"
+					// },
+					// 使用cdn引入element-plus时,开发环境还是需要在main.js中引入element-plus,可以不用引入css
+					// {
+					// 	name: "element-plus",
+					// 	var: "ElementPlus",
+					// 	path: "https://unpkg.com/element-plus",
+					// 	css: "https://unpkg.com/element-plus/dist/index.css"
+					// }
+				],
+			}),
 			// * 是否生成包预览
 			viteEnv.VITE_REPORT && visualizer(),
 			// * gzip compress
@@ -47,6 +66,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 					ext: '.gz',
 				}),
 		], // 插件
+		esbuild: {
+			pure: viteEnv.VITE_DROP_CONSOLE ? ['console.log', 'debugger'] : [],
+		},
 		resolve: {
 			// 文件路径映射
 			alias: {
@@ -60,7 +82,9 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
 			},
 		},
 		build: {
+			outDir: 'dist', // 指定打包后的资源路径
 			assetsDir: 'assets', //指定静态资源存放路径
+			minify: 'esbuild', //  esbuild 打包更快，但是不能去除 console.log
 		},
 		css: {
 			preprocessorOptions: {
