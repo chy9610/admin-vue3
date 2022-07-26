@@ -22,11 +22,18 @@ export const useTheme = () => {
 			`${getDarkColor(themeConfig.value.primary, 0.1)}`
 		);
 		document.documentElement.style.setProperty('--el-color-primary', themeConfig.value.primary);
+		// 颜色变浅
+		for (let i = 1; i <= 9; i++) {
+			document.documentElement.style.setProperty(
+				`--el-color-primary-light-${i}`,
+				`${getLightColor(themeConfig.value.primary, i / 10)}`
+			);
+		}
 	};
 
 	// 切换暗黑模式
 	const switchDark = () => {
-		const body = document.body as HTMLElement;
+		const body = document.documentElement as HTMLElement;
 		if (themeConfig.value.isDark) body.setAttribute('class', 'dark');
 		else body.setAttribute('class', '');
 	};
@@ -40,6 +47,13 @@ export const useTheme = () => {
 		let propName = type === 'grey' ? 'isWeak' : 'isGrey';
 		globalStore.setThemeConfig({ ...themeConfig.value, [propName]: false });
 	};
+
+	onBeforeMount(() => {
+		switchDark();
+		changePrimary(themeConfig.value.primary);
+		if (themeConfig.value.isGrey) changeGreyOrWeak(true, 'grey');
+		if (themeConfig.value.isWeak) changeGreyOrWeak(true, 'weak');
+	});
 
 	return {
 		switchDark,
