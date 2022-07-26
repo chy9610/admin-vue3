@@ -1,8 +1,10 @@
 <template>
     <el-dropdown trigger="click">
-        <el-tooltip effect="dark" content="Ducker" placement="bottom">
-            <img class="avatar" src="@/assets/images/duck.gif" alt="avatar">
-        </el-tooltip>
+        <span>
+            <el-tooltip effect="dark" content="Ducker" placement="bottom">
+                <img class="avatar" src="@/assets/images/duck.gif" alt="avatar">
+            </el-tooltip>
+        </span>
         <template #dropdown>
             <el-dropdown-menu>
                 <el-dropdown-item @click="openDialog('infoRef')">{{ $t("header.personalData") }}</el-dropdown-item>

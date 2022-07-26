@@ -22,21 +22,14 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, computed } from 'vue';
+import { computed } from 'vue';
 import { GlobalStore } from '@/store';
 
 const globalStore = GlobalStore();
 
 const assemblySize = computed((): string => globalStore.assemblySize)
 
-const assemblySizeListCh = reactive<{ [propName: string]: any }>({
-    default: "默认",
-    large: "大型",
-    small: "小型"
-});
-const assemblySizeList = reactive<string[]>(['default', 'large', 'small'])
 const handleSetAssemblySize = (size: string) => {
-    // if (assemblySize.value === size) return;
     globalStore.setAssemblySize(size);
 }
 </script>
