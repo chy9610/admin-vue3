@@ -35,7 +35,6 @@ const routes: RouteRecordRaw[] = [
 		redirect: { name: '404' },
 	},
 ];
-console.log('路由表 ####', routes);
 
 const router = createRouter({
 	history: createWebHashHistory(),

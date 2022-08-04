@@ -1,4 +1,4 @@
-/* 常用flex */
+/* 常用 flex */
 .flx-center {
 	display: flex;
 	align-items: center;
@@ -13,33 +13,38 @@
 	display: flex;
 	align-items: center;
 }
+
 /* 清除浮动 */
 .clearfix::after {
-	content: '';
 	display: block;
 	height: 0;
 	overflow: hidden;
 	clear: both;
+	content: "";
 }
-/* 文本单行省略号 */
+
+/* 文字单行省略号 */
 .sle {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-/* 文本多行省略号 */
+
+/* 文字多行省略号 */
 .mle {
 	display: -webkit-box;
 	overflow: hidden;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 }
-/* 文本自动换行 */
+
+/* 文字多了自動換行 */
 .break-word {
 	word-break: break-all;
 	word-wrap: break-word;
 }
-/* fade-transform (隐藏动画) */
+
+/* fade-transform */
 .fade-transform-leave-active,
 .fade-transform-enter-active {
 	transition: all 0.2s;
@@ -54,7 +59,8 @@
 	transition: all 0.2s;
 	transform: translateX(30px);
 }
-/* Breadcrumb（面包屑动画） */
+
+/* Breadcrumb */
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
 	transition: all 0.2s ease;
@@ -68,7 +74,8 @@
 	position: absolute;
 	z-index: -1;
 }
-/* scroll bar（全局滚动条样式） */
+
+/* scroll bar */
 ::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
@@ -78,4 +85,28 @@
 	background-color: #dddee0;
 	border-radius: 20px;
 	box-shadow: inset 0 0 0 white;
+}
+.content-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100%;
+	.text {
+		margin: 30px 0;
+		font-size: 23px;
+		font-weight: bold;
+		color: rgb(88 88 88);
+	}
+}
+
+/* nprogress样式 */
+#nprogress .bar {
+	background: $primary-color !important;
+}
+#nprogress .spinner-icon {
+	border-top-color: $primary-color !important;
+	border-left-color: $primary-color !important;
+}
+#nprogress .peg {
+	box-shadow: 0 0 10px $primary-color, 0 0 5px $primary-color !important;
 }

@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { MenuState } from '../interface';
+import piniaPersistConfig from '@/config/piniaPersist';
 
 export const MenuStore = defineStore({
 	id: 'MenuStore',
@@ -14,5 +15,9 @@ export const MenuStore = defineStore({
 		async setCollapse() {
 			this.isCollapse = !this.isCollapse;
 		},
+	},
+	persist: {
+		enabled: true,
+		strategies: [piniaPersistConfig('MenuStore')],
 	},
 });

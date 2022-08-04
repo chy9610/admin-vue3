@@ -8,7 +8,7 @@ const homeRouter: Array<RouteRecordRaw> = [
 		redirect: '/home/index',
 		children: [
 			{
-				path: '/home/index',
+				path: '/home/index ',
 				name: 'home',
 				component: () => import('@/views/home/index.vue'),
 				meta: {

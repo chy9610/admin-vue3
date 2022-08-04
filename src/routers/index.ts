@@ -1,8 +1,8 @@
 import router from '@/routers/router';
 import NProgress from '@/config/nprogress';
 import { HOME_URL } from '@/config/config';
-import { GlobalStore } from '@/store';
 import { AuthStore } from '@/store/modules/auth';
+import { GlobalStore } from '@/store';
 import { AxiosCanceler } from '@/api/helper/axiosCancel';
 
 const axiosCanceler = new AxiosCanceler();
@@ -36,15 +36,11 @@ router.beforeEach((to, _from, next) => {
 	const staticRouter = [HOME_URL, '/403'];
 	// 合并路由
 	const routerList = dynamicRouter.concat(staticRouter);
-
 	// 如果访问的地址没有在路由表中，则重定向 403 页面
 	if (routerList.indexOf(to.path) >= 0) {
-		next();
-		return;
+		return next();
 	}
-	next({
-		path: '/403',
-	});
+	next({ path: '/403' });
 });
 
 // 路由器后置拦截 after

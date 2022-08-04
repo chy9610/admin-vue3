@@ -3,7 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 const errorRouter: Array<RouteRecordRaw> = [
 	{
 		path: '/403',
-		name: 'name',
+		name: '403',
 		component: () => import('@/components/ErrorMessage/403.vue'),
 		meta: {
 			requiresAuth: true,
@@ -13,7 +13,7 @@ const errorRouter: Array<RouteRecordRaw> = [
 	},
 	{
 		path: '/404',
-		name: 'name',
+		name: '404',
 		component: () => import('@/components/ErrorMessage/404.vue'),
 		meta: {
 			requiresAuth: false,
@@ -23,7 +23,7 @@ const errorRouter: Array<RouteRecordRaw> = [
 	},
 	{
 		path: '/500',
-		name: 'name',
+		name: '500',
 		component: () => import('@/components/ErrorMessage/500.vue'),
 		meta: {
 			requiresAuth: false,

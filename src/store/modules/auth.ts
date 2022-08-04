@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { AuthState } from '../interface';
+import piniaPersistConfig from '@/config/piniaPersist';
 
 export const AuthStore = defineStore({
 	id: 'AuthStore',
@@ -26,5 +27,9 @@ export const AuthStore = defineStore({
 		async setAuthRouter(dynamicRouter: string[]) {
 			this.authRouter = dynamicRouter;
 		},
+	},
+	persist: {
+		enabled: true,
+		strategies: [piniaPersistConfig('AuthStore')],
 	},
 });
